@@ -7,7 +7,7 @@ const productRouter = require("./routes/product");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/products", productRouter);
+app.use("/produtos", productRouter);
 
 mongoose
   .connect(config.mongo.url + "/product-service", {

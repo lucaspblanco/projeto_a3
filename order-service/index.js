@@ -5,9 +5,11 @@ const PORT = process.env.PORT || 3002;
 const mongoose = require("mongoose");
 const amqp = require("amqplib");
 const Order = require("./models/Order");
+const orderRouter = require("./routes/orders");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use("/pedidos", orderRouter);
 var channel, connection;
 
 mongoose
@@ -20,9 +22,11 @@ mongoose
 
 // Conexão RabbitMQ
 async function connectToRabbitMQ() {
-  connection = await amqp.connect(config.rabbitmq.ampq);
+  connection = await amqp.connect(config.rabbitmq.ampq)
   channel = await connection.createChannel();
-  await channel.assertQueue("order-service-queue");
+  await channel.assertQueue("order-service-queue")
+    .then(() => console.log("Order-Service conectado ao RabbitMQ"))
+    .catch((e) => console.log(e));
 }
 
 createOrder = (products, userEmail) => {
