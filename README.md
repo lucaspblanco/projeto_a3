@@ -1,6 +1,7 @@
 # Requerimentos mínimos para o funcionamento da aplicação
 - RabbitMQ
 - MongoDB
+
 Ambos podem ser inicializados de forma simples com o docker utilizando docker-images oficiais disponibilizadas no Docker Hub, ou do jeito que preferir.
 
 As configurações de conexão devem ser informadas no arquivo config.js
