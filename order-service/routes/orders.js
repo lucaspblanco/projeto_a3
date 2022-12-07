@@ -17,7 +17,7 @@ connectToRabbitMQ();
 // Listar  Pedidos
 router.get("/", async (req, res) => {
     // Obtem os pedidos no banco de dados
-    const orders = await Order.find({});
+    const orders = await Order.find({}).sort({ createdAt: 'desc' });
 
     return res.status(201).json({
         message: "Todos os pedidos",

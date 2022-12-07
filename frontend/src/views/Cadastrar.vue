@@ -3,27 +3,8 @@ import CriarProduto from '../components/CriarProduto.vue';
 </script>
 
 <template>
-  <div class="formulario">
-    <h1>Cadastro de Produto</h1>
-    <CriarProduto></CriarProduto>
+  <div class="cls pa-2 text-h4">
+    Cadastro de Produto
   </div>
+  <CriarProduto></CriarProduto>
 </template>
-
-<style>
-@media (min-width: 1024px) {
-  .formulario {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-  }
-
-  label {
-    display: block;
-  }
-
-  input[type=submit] {
-    margin-top: 15px;
-  }
-}
-</style>

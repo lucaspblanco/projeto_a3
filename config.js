@@ -1,9 +1,9 @@
 var config = {
     mongo: {
-        url: "mongodb+srv://admin:admin@cluster0.cebpydc.mongodb.net"
+        url: "mongodb://localhost:27017"
     },
     rabbitmq: {
-        ampq: "amqp://guest:guest@192.168.0.109:5672"
+        ampq: "amqp://localhost:5672"
     }
 };
 

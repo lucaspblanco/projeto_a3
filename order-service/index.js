@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const config = require("../config");
 const app = express();
 const PORT = process.env.PORT || 3002;
@@ -7,6 +8,7 @@ const amqp = require("amqplib");
 const Order = require("./models/Order");
 const orderRouter = require("./routes/orders");
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/pedidos", orderRouter);
@@ -29,14 +31,14 @@ async function connectToRabbitMQ() {
     .catch((e) => console.log(e));
 }
 
-createOrder = (products, userEmail) => {
+createOrder = (products, userData) => {
   let total = 0;
   products.forEach((product) => {
     total += product.price;
   });
 
   const order = new Order({
-    user: userEmail,
+    user: userData,
     products,
     total,
   });
@@ -47,8 +49,8 @@ createOrder = (products, userEmail) => {
 connectToRabbitMQ().then(() => {
   // Listener pra fila no Rabbit
   channel.consume("order-service-queue", (data) => {
-    const { products, userEmail } = JSON.parse(data.content);
-    const newOrder = createOrder(products, userEmail);
+    const { products, userData } = JSON.parse(data.content);
+    const newOrder = createOrder(products, userData);
     channel.ack(data);
     channel.sendToQueue(
       "product-service-queue",

@@ -7,7 +7,7 @@ import { RouterView } from 'vue-router'
     <!-- Top Menu -->
     <v-app-bar color="primary" prominent>
       <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-app-bar-title>Projeto A3</v-app-bar-title>
+      <v-app-bar-title>Lojinha</v-app-bar-title>
     </v-app-bar>
 
     <v-navigation-drawer v-model="drawer" location="left" temporary>
@@ -32,8 +32,8 @@ export default {
     group: null,
     items: [
       {
-        title: 'Home',
-        value: 'home',
+        title: 'Produtos / Comprar',
+        value: 'produtosComprar',
         route: '/'
       },
       {

@@ -3,10 +3,15 @@ const Schema = mongoose.Schema;
 
 const OrderSchema = new Schema(
   {
-    user: String,
+    user: {
+      name: String,
+      email: String
+    },
     products: [
       {
         product_id: String,
+        name: String,
+        price: Number
       },
     ],
     total: {

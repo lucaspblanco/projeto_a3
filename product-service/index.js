@@ -1,10 +1,12 @@
 const express = require("express");
+const cors = require("cors");
 const config = require("../config");
 const app = express();
 const PORT = process.env.PORT || 3001;
 const mongoose = require("mongoose");
 const productRouter = require("./routes/product");
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/produtos", productRouter);

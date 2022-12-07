@@ -4,7 +4,7 @@ import ListarProdutos from '../components/ListarProdutos.vue';
 
 <template>
   <div class="cls pa-2 text-h4">
-    Produtos
+    Produtos / Comprar
   </div>
   <ListarProdutos></ListarProdutos>
 </template>

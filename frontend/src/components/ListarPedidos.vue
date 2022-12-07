@@ -1,12 +1,5 @@
-<script setup>
-defineProps({
-  msg: {
-    type: String,
-    required: false
-  }
-})
-</script>
 <script>
+import moment from 'moment'
 export default {
   data() {
     return {
@@ -32,6 +25,9 @@ export default {
           });
           this.orders = list;
         })
+    },
+    formatData(datestring) {
+      return moment(datestring).format('DD/MM/YYYY hh:mm A')
     }
   }
 }
@@ -40,11 +36,14 @@ export default {
   <v-col cols="4">
     <v-list>
       <v-list-item v-for="order in orders" :key="order._id" :border="true">
-        <v-list-item-title>
-          <h4>Pedido: {{ order._id }}</h4>
+        <v-list-item-title class="pt-3">
+          <h3>Pedido: {{ order._id }}</h3>
         </v-list-item-title>
+
         <p><b>Cliente:</b> {{ order.user.name }}</p>
         <p><b>E-mail:</b> {{ order.user.email }}</p>
+        <p><b>Data:</b> {{ formatData(order.createdAt) }}</p>
+
         <v-list dark="true">
           <v-list-item class="pl-0">
             <v-list-item-title>
@@ -59,22 +58,3 @@ export default {
     </v-list>
   </v-col>
 </template>
-
-<style scoped>
-b {
-  font-weight: bold;
-}
-
-ul,
-li {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-li {
-  padding-bottom: 7.5px;
-  margin-bottom: 7.5px;
-  border-bottom: 1px dashed;
-}
-</style>

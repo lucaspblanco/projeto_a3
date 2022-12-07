@@ -14,6 +14,16 @@ async function connectToRabbitMQ() {
 }
 connectToRabbitMQ();
 
+// Listar produtos
+router.get('/', async (req, res) => {
+  const products = await Product.find({});
+
+  return res.status(201).json({
+    message: "Listagem de Produtos",
+    products,
+  });
+});
+
 // Criar novo produto
 router.post("/criar", async (req, res) => {
   const { name, price, description } = req.body;
@@ -33,7 +43,7 @@ router.post("/criar", async (req, res) => {
 
 // Comprar produto
 router.post("/comprar", async (req, res) => {
-  const { productIds, userEmail } = req.body;
+  const { productIds, userData } = req.body;
   // Obtem os produtos no banco de dados utilizando os ids
   const products = await Product.find({ _id: { $in: productIds } });
 
@@ -43,7 +53,7 @@ router.post("/comprar", async (req, res) => {
     Buffer.from(
       JSON.stringify({
         products,
-        userEmail: userEmail,
+        userData: userData,
       })
     )
   );
@@ -55,7 +65,7 @@ router.post("/comprar", async (req, res) => {
     channel.ack(data);
   });
   return res.status(201).json({
-    message: "Pedido realizado com sucesso",
+    message: "Pedido realizado com sucesso!",
     order,
   });
 });
