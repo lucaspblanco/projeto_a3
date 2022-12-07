@@ -10,7 +10,9 @@ var order, channel, connection;
 async function connectToRabbitMQ() {
   connection = await amqp.connect(config.rabbitmq.ampq);
   channel = await connection.createChannel();
-  await channel.assertQueue("product-service-queue");
+  await channel.assertQueue("product-service-queue")
+    .then(() => console.log("Product-Service conectado ao RabbitMQ"))
+    .catch((e) => console.log(e));;
 }
 connectToRabbitMQ();
 
