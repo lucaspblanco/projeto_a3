@@ -27,3 +27,14 @@ npm run dev
 ```sh
 npm run build
 ```
+
+## ALUNOS (RAs)
+
+- Bruna Casagrande R.A: 821121694
+- Diego Santos Araujo R.A: 821142329
+- Emerson Araújo Rodrigues R.A:821142545
+- Lucas Pedrosa Blanco R.A: 821162129
+- Matheus Lira R.A:821128518
+- Paulo Alef Magalhaes Miranda R.A: 821137880
+- Samuel Junior R.A: 821149456
+- Stefany Piemontez R.A: 821140092
